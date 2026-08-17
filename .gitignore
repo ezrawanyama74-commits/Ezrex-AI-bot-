@@ -1,3 +1,4 @@
 .env
-*.log
-git_auto_push.sh
+cron.log
+__pycache__/
+*.pyc

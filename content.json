@@ -1,10 +1,10 @@
 {
   "english": {
-    "title": "Tech Insight: A Preview of DuckDB v2.0...",
-    "body": "Global Update: A Preview of DuckDB v2.0. Meanwhile, on my main platform (Ezra Wanyama), continuous deployment scripts are active."
+    "title": "Tech Insight: AI;DR (AI; Didn't Read)...",
+    "body": "Global Update: AI;DR (AI; Didn't Read). Meanwhile, on my main platform (Ezra Wanyama), continuous deployment scripts are active."
   },
   "sheng": {
-    "title": "Ma-News: A Preview of DuckDB v2.0...",
-    "body": "Form ni hii: A Preview of DuckDB v2.0. Nayo kwa site yangu-base (Ezra Wanyama), ma-code ziko auto-pushed na cron jobs bila stress!"
+    "title": "Ma-News: AI;DR (AI; Didn't Read)...",
+    "body": "Form ni hii: AI;DR (AI; Didn't Read). Nayo kwa site yangu-base (Ezra Wanyama), ma-code ziko auto-pushed na cron jobs bila stress!"
   }
 }
