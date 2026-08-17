@@ -1,88 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ezrex AI Bot | Smartphone Scientist Ecosystem</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ezrex AI Bot - The Smartphone Scientist Ecosystem</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <section id="vision">
+        <h2>CURATED DESK</h2>
+        <h1>LATEST NEWS & EVENTS</h1>
 
-  <!-- Top Navbar with Hamburger -->
-  <header class="navbar">
-    <div class="nav-brand">
-      <h1>EZREX AI BOT</h1>
-      <span>THE SMARTPHONE SCIENTIST ECOSYSTEM</span>
-    </div>
-    <button class="hamburger" id="menu-btn" aria-label="Toggle Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </header>
+        <div class="card">
+            <img id="news-img" src="https://picsum.photos/800/400?tech" alt="Tech Banner Image" style="width:100%; height: auto; display:block;">
+            
+            <div class="card-body">
+                <div class="language-toggle" style="margin: 10px 0;">
+                    <a href="#" id="btn-sheng">🇰🇪 Sheng' Desk</a> | 
+                    <a href="#" id="btn-english">🌐 World English</a>
+                </div>
 
-  <!-- Sliding Drawer Menu -->
-  <nav class="nav-drawer" id="nav-drawer">
-    <ul id="menu-list">
-      <li><a href="#hero-section" onclick="closeMenu()">🏠 Home</a></li>
-      <li><a href="#news-section" onclick="closeMenu()">📰 News & Scraped Desk</a></li>
-      <li><a href="#vision-section" onclick="closeMenu()">💡 Our Vision</a></li>
-    </ul>
-  </nav>
-
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-  <!-- Main Scrollable Feed -->
-  <main class="main-container">
-
-    <!-- Hero Card -->
-    <section id="hero-section" class="editorial-card">
-      <span class="tagline">KNOWLEDGE • CHARACTER • EXCELLENCE</span>
-      <h2>SHAPING TOMORROW'S TECH LEADERS</h2>
-      <p>Empowering minds through verified technological breakthroughs, credible evidence, and objective editorial analysis.</p>
-    </section>
-
-    <!-- News Card with Banner Image -->
-    <section id="news-section" class="editorial-card">
-      <span class="section-subtitle">CURATED DESK</span>
-      <h2>LATEST NEWS & EVENTS</h2>
-
-      <!-- Visual Card Wrapper -->
-      <article class="news-hero-wrapper">
-        <div class="news-image-box">
-          <span id="news-badge" class="badge">✓ OFFICIAL BENCHMARK</span>
-          <img id="news-image" src="" alt="Tech Banner Image" />
+                <h3 id="news-title">Loading title...</h3>
+                <p id="news-body">Loading latest content...</p>
+            </div>
         </div>
-
-        <div class="news-details">
-          <span id="news-category" class="category-tag">HARDWARE ARCHITECTURE</span>
-          <h3 id="news-title">Loading title...</h3>
-
-          <div class="tab-controls">
-            <button id="btn-sheng" class="active-tab" onclick="switchLanguage('sheng')">🇰🇪 Sheng' Desk</button>
-            <button id="btn-english" onclick="switchLanguage('english')">🌐 World English</button>
-          </div>
-
-          <p id="news-body">Fetching latest automated story...</p>
-        </div>
-      </article>
     </section>
 
-    <!-- Vision Section -->
-    <section id="vision-section" class="editorial-card">
-      <span class="section-subtitle">OUR PURPOSE</span>
-      <h2>OUR VISION</h2>
-      <p>To build a globally respected technical hub where knowledge, evidence-based innovation, and character empower individuals to create meaningful solutions.</p>
-    </section>
-
-    <div id="dynamic-sections"></div>
-
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Ezrex AI Bot | The School of Tech. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
