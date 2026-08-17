@@ -3,175 +3,490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ezra Wanyama | THE SMARTPHONE SCIENTIST HEART</title>
+    <title>Ezra Wanyama | The Smartphone Scientist</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; }
         
-        body {
-            background: #090d16;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.12) 0px, transparent 50%);
-            color: #f1f5f9;
-            min-height: 100vh;
-            padding: 30px 16px;
+        body { 
+            background: #030712; 
+            color: #f8fafc; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 40px 16px; 
+            overflow-x: hidden; 
+            position: relative; 
+        }
+
+        /* Dynamic Background Gradient */
+        .color-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(125deg, #0f172a, #3b0764, #1e1b4b, #030712);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            z-index: -3;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* High-Speed Racing Canvas Layer */
+        #racingCanvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            z-index: 1;
         }
 
-        .container { width: 100%; max-width: 480px; }
+        /* Animated Rainbow Border Wrapper */
+        .card-wrapper {
+            position: relative;
+            border-radius: 26px;
+            padding: 2px;
+            background: linear-gradient(90deg, #38bdf8, #a855f7, #ec4899, #38bdf8);
+            background-size: 300% 300%;
+            animation: borderRotate 4s linear infinite;
+            width: 100%;
+        }
 
-        /* Profile Card */
-        .profile-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Main Glass Card */
+        .main-card {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
             border-radius: 24px;
-            padding: 28px 20px;
+            padding: 32px 24px;
             text-align: center;
-            margin-bottom: 24px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .profile-badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
+        /* Breathing Profile Photo */
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #38bdf8;
+            margin-bottom: 16px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            animation: breathePhoto 3.5s ease-in-out infinite alternate;
         }
 
-        .profile-card h1 {
-            font-size: 1.7rem;
+        @keyframes breathePhoto {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); border-color: #38bdf8; }
+            50% { transform: scale(1.08); box-shadow: 0 0 35px rgba(168, 85, 247, 0.8); border-color: #a855f7; }
+            100% { transform: scale(0.98); box-shadow: 0 0 20px rgba(236, 72, 153, 0.6); border-color: #ec4899; }
+        }
+
+        /* Disappearing / Appearing Text Effect */
+        .flicker-text {
+            font-size: 1.4rem;
             font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: appearDisappear 2.5s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .profile-card p {
+        @keyframes appearDisappear {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.05; transform: scale(0.95); }
+        }
+
+        p {
             font-size: 0.92rem;
+            color: #cbd5e1;
             line-height: 1.6;
-            color: #94a3b8;
-            font-weight: 400;
         }
 
-        /* Dynamic Connect Buttons */
-        .btn-link {
+        /* Live Terminal Widget */
+        .terminal-box {
+            width: 100%;
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #38bdf8;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+            text-align: left;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #22c55e; }
+
+        /* Social Badges Grid */
+        .social-bar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #38bdf8;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .social-icon:active { transform: scale(0.9); border-color: #a855f7; }
+
+        /* Compact Grid for Rotating Gear Buttons */
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .gear-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(8px);
-            color: #f8fafc;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 16px;
-            margin-bottom: 14px;
-            border-radius: 16px;
+            aspect-ratio: 1 / 1;
+            position: relative;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.98rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .btn-link:hover, .btn-link:active {
-            background: rgba(56, 189, 248, 0.15);
-            border-color: rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
-            transform: translateY(-2px);
-        }
-
-        /* Post Gallery */
-        .feed-item {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            margin-top: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .feed-item img {
+        .gear-svg {
             width: 100%;
-            height: auto;
-            display: block;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            height: 100%;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+            animation: spinGear 3s infinite linear;
         }
 
-        .feed-item .caption {
-            padding: 14px 16px;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            line-height: 1.5;
+        @keyframes spinGear {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .empty-state {
+        .gear-center-icon {
+            position: absolute;
+            font-size: 1.1rem;
+            z-index: 2;
+            pointer-events: none;
+            top: 24%;
+        }
+
+        /* Center Horizontal Title Overlay */
+        .gear-title-overlay {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            width: 85%;
             text-align: center;
-            color: #64748b;
-            font-size: 0.88rem;
-            padding: 20px 0;
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 8px #ef4444, 0 0 16px #38bdf8, 0 0 3px #000;
+            pointer-events: none;
+            animation: overlayFlicker 1.8s ease-in-out infinite;
+            line-height: 1.1;
+        }
+
+        @keyframes overlayFlicker {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.05; transform: translate(-50%, -50%) scale(0.92); }
+        }
+
+        .gear-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid #38bdf8;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2));
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:active {
+            transform: scale(0.97);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(236, 72, 153, 0.4));
+        }
+
+        /* Photo Gallery Grid */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 8px 12px;
+            background: linear-gradient(transparent, rgba(3, 7, 18, 0.95));
+            font-size: 0.75rem;
+            color: #f8fafc;
         }
     </style>
 </head>
 <body>
 
+<div class="color-bg"></div>
+
+<!-- High-Speed Racing Canvas -->
+<canvas id="racingCanvas"></canvas>
+
 <div class="container">
-    <!-- Header Card -->
-    <div class="profile-card">
-        <div class="profile-badge">THE SMARTPHONE SCIENTIST HEART</div>
-        <h1>Ezra Wanyama</h1>
-        <p>Proving that a smartphone isn't just for consuming content—it's a high-powered terminal for creating world-class software, automation systems, and dynamic mobile solutions.</p>
+    <div class="card-wrapper">
+        <div class="main-card">
+            <img src="ezra.jpg" alt="Ezra Wanyama" class="profile-img" onerror="this.style.display='none'">
+            <h1 class="flicker-text">Ezra Wanyama<br><span style="font-size: 0.85rem; color: #38bdf8;">THE SMARTPHONE SCIENTIST</span></h1>
+            <p>Proving that a smartphone isn't just for consuming content—it's a high-powered terminal for creating world-class software, automation systems, and dynamic mobile solutions.</p>
+        </div>
     </div>
 
-    <!-- Link Buttons -->
-    <div id="buttons-container"></div>
+    <!-- Live Status Terminal Widget -->
+    <div class="terminal-box">
+        <div class="terminal-header">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+        </div>
+        <div>ezra@tamax:~$ <span style="color: #4ade80;">status --active</span></div>
+        <div style="color: #cbd5e1; margin-top: 4px;">> Environment: Tamax Mobile Terminal</div>
+        <div style="color: #cbd5e1;">> Core Focus: Web Apps & AI Automation</div>
+    </div>
 
-    <!-- Feed Gallery -->
-    <div id="gallery-container"></div>
+    <!-- Social Badges -->
+    <div class="social-bar">
+        <a href="https://github.com" target="_blank" class="social-icon" onclick="playClickSound()">💻</a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon" onclick="playClickSound()">💼</a>
+        <a href="https://youtube.com" target="_blank" class="social-icon" onclick="playClickSound()">📺</a>
+    </div>
+
+    <!-- Compact Gear Buttons Container -->
+    <div id="linksContainer" class="links-container"></div>
+
+    <!-- Save Contact Card Button -->
+    <button class="action-btn" onclick="saveContact()">🎴 Save Contact Info</button>
+
+    <!-- Gallery Container -->
+    <div id="galleryContainer" class="gallery-container"></div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        renderLinks();
-        renderGallery();
-    });
+    /* Audio Effect Synthesizer (Web Audio API) */
+    function playClickSound() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
+        } catch(e) {}
+    }
 
-    function renderLinks() {
-        const container = document.getElementById("buttons-container");
+    /* Save Contact Card (.vcf) */
+    function saveContact() {
+        playClickSound();
+        const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Ezra Wanyama
+TITLE:The Smartphone Scientist
+NOTE:Creating software, automation systems, and dynamic mobile solutions.
+END:VCARD`;
+        const blob = new Blob([vcardData], { type: 'text/vcard' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Ezra_Wanyama.vcf';
+        a.click();
+    }
+
+    /* High-Speed Racing Canvas Animation Engine */
+    const canvas = document.getElementById('racingCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const symbols = ['🌹', '🌹', '🎇', '🎉', '✨', '🏎️'];
+    const particles = [];
+    const maxParticles = 20;
+
+    class RacingParticle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height + 60;
+            this.speed = Math.random() * 8 + 12; // Extremely fast racing speed
+            this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            this.size = Math.random() * 8 + 18;
+            this.spin = (Math.random() - 0.5) * 0.1;
+            this.angle = 0;
+            this.opacity = Math.random() * 0.2 + 0.8;
+        }
+        update() {
+            this.y -= this.speed; // Blasting straight up like a racing car speeding past
+            this.angle += this.spin;
+
+            if (this.y < -60) {
+                this.reset();
+            }
+        }
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.font = `${this.size}px sans-serif`;
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.angle);
+            ctx.fillText(this.symbol, -this.size / 2, this.size / 2);
+            ctx.restore();
+        }
+    }
+
+    for (let i = 0; i < maxParticles; i++) {
+        const p = new RacingParticle();
+        p.y = Math.random() * canvas.height;
+        particles.push(p);
+    }
+
+    function animateRacing() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animateRacing);
+    }
+    animateRacing();
+
+    /* Render Content */
+    function renderPage() {
+        const linksContainer = document.getElementById("linksContainer");
         const links = JSON.parse(localStorage.getItem("ezra_links") || "[]");
 
-        if (links.length === 0) {
-            container.innerHTML = '<div class="empty-state">No links uploaded yet.</div>';
-            return;
-        }
+        const activeLinks = links.length > 0 ? links : [{ title: "THE SMARTPHONE SCIENTIST WEB", url: "#" }];
 
-        container.innerHTML = links.map(item => `
-            <a href="${item.url}" target="_blank" class="btn-link">
-                ${item.title}
-            </a>
-        `).join('');
-    }
+        linksContainer.innerHTML = activeLinks.map((link, idx) => {
+            const pathId = `circlePath_${idx}`;
+            return `
+                <a href="${link.url}" target="_blank" class="gear-btn" onclick="playClickSound()">
+                    <span class="gear-center-icon">⚙️</span>
+                    
+                    <!-- Center Overlay Title (Flickering) -->
+                    <div class="gear-title-overlay">${link.title}</div>
 
-    function renderGallery() {
-        const container = document.getElementById("gallery-container");
+                    <svg viewBox="0 0 200 200" class="gear-svg">
+                        <defs>
+                            <path id="${pathId}" d="M 100, 100 m -65, 0 a 65,65 0 1,1 130,0 a 65,65 0 1,1 -130,0" />
+                        </defs>
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#38bdf8" stroke-width="4" stroke-dasharray="10 6" />
+                        <circle cx="100" cy="100" r="75" fill="rgba(15, 23, 42, 0.9)" stroke="#a855f7" stroke-width="2" />
+                        
+                        <text fill="#f8fafc" font-size="10" font-weight="bold" letter-spacing="2">
+                            <textPath href="#${pathId}" startOffset="50%" text-anchor="middle">
+                                ${link.title.toUpperCase()}
+                            </textPath>
+                        </text>
+                    </svg>
+                </a>
+            `;
+        }).join('');
+
+        const galleryContainer = document.getElementById("galleryContainer");
         const gallery = JSON.parse(localStorage.getItem("ezra_gallery") || "[]");
 
-        container.innerHTML = gallery.map(item => `
-            <div class="feed-item">
-                <img src="${item.image}" alt="Post Media">
-                ${item.caption ? `<div class="caption">${item.caption}</div>` : ''}
-            </div>
-        `).join('');
+        if (gallery.length > 0) {
+            galleryContainer.innerHTML = gallery.map(item => `
+                <div class="photo-card">
+                    <img src="${item.image}" alt="Gallery photo">
+                    ${item.caption ? `<div class="photo-caption">${item.caption}</div>` : ''}
+                </div>
+            `).join('');
+        }
     }
+
+    renderPage();
 </script>
 
 </body>
