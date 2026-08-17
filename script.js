@@ -1,10 +1,9 @@
 const menuBtn = document.getElementById('menu-btn');
 const navDrawer = document.getElementById('nav-drawer');
 const overlay = document.getElementById('overlay');
-const menuList = document.getElementById('menu-list');
-const dynamicContainer = document.getElementById('dynamic-sections');
 
-// Toggle Drawer Navigation
+let globalData = null;
+
 function toggleMenu() {
   navDrawer.classList.toggle('open');
   overlay.classList.toggle('active');
@@ -19,55 +18,38 @@ if (menuBtn) {
   menuBtn.addEventListener('click', toggleMenu);
 }
 
-// Scraped Content Loader & Category Router
-async function loadContent(lang) {
+// Fetch content from local scraper API payload
+async function fetchContent() {
   try {
-    const response = await fetch('./content.json');
-    const data = await response.json();
+    const response = await fetch('./content.json?t=' + new Date().getTime());
+    globalData = await response.json();
 
-    // Set active tab styling
-    document.getElementById('btn-sheng').classList.toggle('active-tab', lang === 'sheng');
-    document.getElementById('btn-english').classList.toggle('active-tab', lang === 'english');
+    if (globalData) {
+      // Update Banner Image & Metadata
+      document.getElementById('news-image').src = globalData.image_url;
+      document.getElementById('news-badge').textContent = globalData.badge || '✓ LIVE UPDATE';
+      document.getElementById('news-category').textContent = globalData.category || 'TECH INSIGHTS';
 
-    // Route standard news directly to the existing News card
-    if (data[lang]) {
-      document.getElementById('news-title').textContent = data[lang].title;
-      document.getElementById('news-body').textContent = data[lang].body;
+      // Default to Sheng text
+      switchLanguage('sheng');
     }
-
-    // Check for new categories in payload and inject them dynamically
-    if (data.categories) {
-      data.categories.forEach(cat => {
-        const catId = `cat-${cat.slug}`;
-
-        // If section doesn't exist yet, append section and menu item
-        if (!document.getElementById(catId)) {
-          // 1. Add item to Hamburger Menu
-          const li = document.createElement('li');
-          li.innerHTML = `<a href="#${catId}" onclick="closeMenu()">📌 ${cat.title}</a>`;
-          menuList.appendChild(li);
-
-          // 2. Append new category section to page
-          const section = document.createElement('section');
-          section.id = catId;
-          section.className = 'editorial-card';
-          section.innerHTML = `
-            <span class="section-subtitle">NEW CATEGORY</span>
-            <h2>${cat.title.toUpperCase()}</h2>
-            <div class="news-content-box">
-              <p>${cat.content}</p>
-            </div>
-          `;
-          dynamicContainer.appendChild(section);
-        }
-      });
-    }
-
   } catch (error) {
-    console.error('Error loading content:', error);
+    console.error('Error loading JSON payload:', error);
   }
 }
 
+function switchLanguage(lang) {
+  if (!globalData || !globalData[lang]) return;
+
+  document.getElementById('btn-sheng').classList.toggle('active-tab', lang === 'sheng');
+  document.getElementById('btn-english').classList.toggle('active-tab', lang === 'english');
+
+  document.getElementById('news-title').textContent = globalData[lang].title;
+  document.getElementById('news-body').textContent = globalData[lang].body;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  loadContent('sheng');
+  fetchContent();
+  // Refresh content on client UI every 60 seconds
+  setInterval(fetchContent, 60000);
 });

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ezrex AI Bot | Smartphone Scientist</title>
+  <title>Ezrex AI Bot | Smartphone Scientist Ecosystem</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Fixed Top Header Navigation -->
+  <!-- Top Navbar with Hamburger -->
   <header class="navbar">
     <div class="nav-brand">
       <h1>EZREX AI BOT</h1>
-      <span>THE SMARTPHONE SCIENTIST</span>
+      <span>THE SMARTPHONE SCIENTIST ECOSYSTEM</span>
     </div>
     <button class="hamburger" id="menu-btn" aria-label="Toggle Menu">
       <span></span>
@@ -21,7 +21,7 @@
     </button>
   </header>
 
-  <!-- Sliding Drawer Navigation -->
+  <!-- Sliding Drawer Menu -->
   <nav class="nav-drawer" id="nav-drawer">
     <ul id="menu-list">
       <li><a href="#hero-section" onclick="closeMenu()">🏠 Home</a></li>
@@ -32,40 +32,49 @@
 
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <!-- Main Scrollable Content Container -->
+  <!-- Main Scrollable Feed -->
   <main class="main-container">
 
-    <!-- Section 1: Hero Banner -->
-    <section id="hero-section" class="editorial-card hero-card">
+    <!-- Hero Card -->
+    <section id="hero-section" class="editorial-card">
       <span class="tagline">KNOWLEDGE • CHARACTER • EXCELLENCE</span>
       <h2>SHAPING TOMORROW'S TECH LEADERS</h2>
       <p>Empowering minds through verified technological breakthroughs, credible evidence, and objective editorial analysis.</p>
     </section>
 
-    <!-- Section 2: Scraped News Feed -->
+    <!-- News Card with Banner Image -->
     <section id="news-section" class="editorial-card">
       <span class="section-subtitle">CURATED DESK</span>
       <h2>LATEST NEWS & EVENTS</h2>
 
-      <div class="tab-controls">
-        <button id="btn-sheng" class="active-tab" onclick="loadContent('sheng')">🇰🇪 Sheng' Desk</button>
-        <button id="btn-english" onclick="loadContent('english')">🌐 World English</button>
-      </div>
+      <!-- Visual Card Wrapper -->
+      <article class="news-hero-wrapper">
+        <div class="news-image-box">
+          <span id="news-badge" class="badge">✓ OFFICIAL BENCHMARK</span>
+          <img id="news-image" src="" alt="Tech Banner Image" />
+        </div>
 
-      <article class="news-content-box">
-        <h3 id="news-title">Loading live content...</h3>
-        <p id="news-body">Fetching latest scraped updates...</p>
+        <div class="news-details">
+          <span id="news-category" class="category-tag">HARDWARE ARCHITECTURE</span>
+          <h3 id="news-title">Loading title...</h3>
+
+          <div class="tab-controls">
+            <button id="btn-sheng" class="active-tab" onclick="switchLanguage('sheng')">🇰🇪 Sheng' Desk</button>
+            <button id="btn-english" onclick="switchLanguage('english')">🌐 World English</button>
+          </div>
+
+          <p id="news-body">Fetching latest automated story...</p>
+        </div>
       </article>
     </section>
 
-    <!-- Section 3: Vision & Purpose -->
-    <section id="vision-section" class="editorial-card vision-card">
+    <!-- Vision Section -->
+    <section id="vision-section" class="editorial-card">
       <span class="section-subtitle">OUR PURPOSE</span>
       <h2>OUR VISION</h2>
       <p>To build a globally respected technical hub where knowledge, evidence-based innovation, and character empower individuals to create meaningful solutions.</p>
     </section>
 
-    <!-- Dynamic Sections injected by script.js will append here -->
     <div id="dynamic-sections"></div>
 
   </main>
