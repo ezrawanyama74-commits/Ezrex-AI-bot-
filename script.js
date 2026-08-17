@@ -1,57 +1,65 @@
-const menuBtn = document.getElementById('menu-btn');
-const navDrawer = document.getElementById('nav-drawer');
-const overlay = document.getElementById('overlay');
+document.addEventListener("DOMContentLoaded", () => {
+    // Add timestamp query parameter to bypass browser/CDN cache
+    fetch('./content.json?v=' + new Date().getTime())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Loaded content:", data);
+            
+            // Update image and badge
+            const imageEl = document.querySelector(".news-card img, #news-image, [alt*='Banner']");
+            if (imageEl && data.image_url) {
+                imageEl.src = data.image_url;
+            }
+            
+            const badgeEl = document.querySelector(".badge, .badge-text");
+            if (badgeEl && data.badge) {
+                badgeEl.textContent = data.badge;
+            }
+            
+            const categoryEl = document.querySelector(".category, .news-category");
+            if (categoryEl && data.category) {
+                categoryEl.textContent = data.category;
+            }
 
-let globalData = null;
-const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80";
+            // Default language state (Sheng)
+            let currentLang = "sheng";
+            
+            const titleEl = document.querySelector(".news-title, #news-title, h3");
+            const bodyEl = document.querySelector(".news-body, #news-body, p");
 
-function toggleMenu() {
-  navDrawer.classList.toggle('open');
-  overlay.classList.toggle('active');
-}
+            function updateDisplay() {
+                if (data[currentLang]) {
+                    if (titleEl) titleEl.textContent = data[currentLang].title;
+                    if (bodyEl) bodyEl.textContent = data[currentLang].body;
+                }
+            }
 
-function closeMenu() {
-  navDrawer.classList.remove('open');
-  overlay.classList.remove('active');
-}
+            updateDisplay();
 
-if (menuBtn) {
-  menuBtn.addEventListener('click', toggleMenu);
-}
+            // Language Toggle Setup
+            const shengBtn = document.querySelector("#sheng-btn, .sheng-toggle");
+            const englishBtn = document.querySelector("#english-btn, .english-toggle");
 
-async function fetchContent() {
-  try {
-    const response = await fetch('./content.json?t=' + new Date().getTime());
-    globalData = await response.json();
+            if (shengBtn) {
+                shengBtn.addEventListener("click", () => {
+                    currentLang = "sheng";
+                    updateDisplay();
+                });
+            }
 
-    if (globalData) {
-      const imgElement = document.getElementById('news-image');
-      
-      // Set image URL or fallback to default tech image
-      imgElement.src = globalData.image_url || DEFAULT_IMAGE;
-      imgElement.onerror = () => { imgElement.src = DEFAULT_IMAGE; };
-
-      document.getElementById('news-badge').textContent = globalData.badge || '✓ LIVE UPDATE';
-      document.getElementById('news-category').textContent = globalData.category || 'TECH INSIGHTS';
-
-      switchLanguage('sheng');
-    }
-  } catch (error) {
-    console.error('Error loading content.json:', error);
-  }
-}
-
-function switchLanguage(lang) {
-  if (!globalData || !globalData[lang]) return;
-
-  document.getElementById('btn-sheng').classList.toggle('active-tab', lang === 'sheng');
-  document.getElementById('btn-english').classList.toggle('active-tab', lang === 'english');
-
-  document.getElementById('news-title').textContent = globalData[lang].title;
-  document.getElementById('news-body').textContent = globalData[lang].body;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  fetchContent();
-  setInterval(fetchContent, 60000);
+            if (englishBtn) {
+                englishBtn.addEventListener("click", () => {
+                    currentLang = "english";
+                    updateDisplay();
+                });
+            }
+        })
+        .catch(err => {
+            console.error("Error loading content.json:", err);
+        });
 });
