@@ -3,18 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ezrex AI Bot | The Smartphone Scientist Ecosystem</title>
+  <title>Ezrex AI Bot | Smartphone Scientist</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>EZREX AI BOT</h1>
-    <p>THE SMARTPHONE SCIENTIST ECOSYSTEM</p>
+
+  <!-- Top Header Navigation -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <h1>EZREX AI BOT</h1>
+      <span>THE SMARTPHONE SCIENTIST</span>
+    </div>
+    <button class="hamburger" id="menu-btn" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
-  <main>
+  <!-- Sliding Drawer Menu -->
+  <nav class="nav-drawer" id="nav-drawer">
+    <ul>
+      <li><a href="#" onclick="showPage('home-page')">🏠 Home</a></li>
+      <li><a href="#" onclick="showPage('news-page')">📰 News & Scraped Desk</a></li>
+      <li><a href="#" onclick="showPage('about-page')">💡 Our Vision</a></li>
+    </ul>
+  </nav>
+
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Page 1: Home Section -->
+  <section id="home-page" class="page-content active-page">
+    <div class="hero">
+      <span class="tagline">KNOWLEDGE • CHARACTER • EXCELLENCE</span>
+      <h2>SHAPING TOMORROW'S TECH LEADERS</h2>
+      <p>Empowering minds through verified technological breakthroughs, credible evidence, and objective editorial analysis.</p>
+    </div>
+  </section>
+
+  <!-- Page 2: News & Scraped Updates Section -->
+  <section id="news-page" class="page-content">
+    <span class="section-subtitle">CURATED DESK</span>
     <h2>LATEST NEWS & EVENTS</h2>
-    
+
     <div class="tab-controls">
       <button onclick="loadContent('sheng')">🇰🇪 Sheng' Desk</button>
       <button onclick="loadContent('english')">🌐 World English</button>
@@ -24,7 +55,14 @@
       <h3 id="news-title">Loading live content...</h3>
       <p id="news-body">Fetching latest scraped updates...</p>
     </article>
-  </main>
+  </section>
+
+  <!-- Page 3: Vision / About Section -->
+  <section id="about-page" class="page-content">
+    <span class="section-subtitle">OUR PURPOSE</span>
+    <h2>OUR VISION</h2>
+    <p>To build a globally respected technical hub where knowledge, evidence-based innovation, and character empower individuals to create meaningful solutions.</p>
+  </section>
 
   <footer>
     <p>&copy; 2026 Ezrex AI Bot | The School of Tech. All rights reserved.</p>
