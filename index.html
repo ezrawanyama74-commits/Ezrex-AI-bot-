@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ezrex AI Bot — The School of Tech</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --text: #c9d1d9;
+      --text-bright: #ffffff;
+      --badge-bg: #238636;
+      --badge-text: #3fb950;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 20px; }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand h1 { color: var(--text-bright); font-size: 1.8rem; letter-spacing: -0.5px; }
+    .brand span { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    .status-pill {
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(88, 166, 255, 0.3);
+    }
+
+    .magazine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+
+    .article-card:hover { transform: translateY(-4px); }
+
+    .image-container { position: relative; width: 100%; height: 200px; background: #000; }
+    .image-container img { width: 100%; height: 100%; object-fit: cover; }
+
+    .evidence-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(13, 17, 23, 0.85);
+      color: var(--badge-text);
+      border: 1px solid var(--badge-bg);
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-title { color: var(--text-bright); font-size: 1.25rem; margin-bottom: 12px; line-height: 1.4; }
+
+    .tab-controls { display: flex; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .tab-btn.active { background: var(--accent); color: #000; font-weight: bold; }
+
+    .content-box { font-size: 0.95rem; line-height: 1.6; display: none; }
+    .content-box.active { display: block; }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: #8b949e;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <h1>Ezrex AI Bot</h1>
+      <span>The School of Tech — Verified Magazine Edition</span>
+    </div>
+    <div class="status-pill">● Credibility Engine Active</div>
+  </header>
+
+  <main class="magazine-grid" id="magazineContainer">
+    <!-- Sample Article Card -->
+    <article class="article-card">
+      <div class="image-container">
+        <span class="evidence-badge">✓ OFFICIAL LAUNCH</span>
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop" alt="Tensor G5 Chip">
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Google Officially Unveils Tensor G5 Built on TSMC 3nm Node</h2>
+        
+        <div class="tab-controls">
+          <button class="tab-btn active" onclick="switchTab(this, 'sheng')">🇰🇪 Sheng' Desk</button>
+          <button class="tab-btn" onclick="switchTab(this, 'english')">🌐 World English</button>
+        </div>
+
+        <div class="content-box sheng active">
+          Google imecheck in officially na chipset mpya ya Tensor G5. Process hii inatoka TSMC 3nm node, wakiconfirm enhancement ya 30% kwa power efficiency design.
+        </div>
+        <div class="content-box english">
+          Google has officially introduced its next-generation Tensor G5 architecture. Built on TSMC's 3nm fabrication process, official documentation confirms a 30% increase in power efficiency.
+        </div>
+
+        <div class="card-footer">
+          <span>Curated by Ezrex AI Bot</span>
+          <span>Verified</span>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    function switchTab(btn, lang) {
+      const card = btn.closest('.card-body');
+      card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      card.querySelectorAll('.content-box').forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      card.querySelector('.' + lang).classList.add('active');
+    }
+  </script>
+</body>
+</html>
