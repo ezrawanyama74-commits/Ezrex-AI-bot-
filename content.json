@@ -1,10 +1,14 @@
 {
-  "english": {
-    "title": "Tech Insight: AI;DR (AI; Didn't Read)...",
-    "body": "Global Update: AI;DR (AI; Didn't Read). Meanwhile, on my main platform (Ezra Wanyama), continuous deployment scripts are active."
-  },
+  "timestamp": 1786998590,
+  "image_url": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+  "badge": "\u2713 LIVE UPDATE",
+  "category": "TECH INSIGHTS",
   "sheng": {
-    "title": "Ma-News: AI;DR (AI; Didn't Read)...",
+    "title": "MA-NEWS: AI;DR (AI; DIDN'T READ)...",
     "body": "Form ni hii: AI;DR (AI; Didn't Read). Nayo kwa site yangu-base (Ezra Wanyama), ma-code ziko auto-pushed na cron jobs bila stress!"
+  },
+  "english": {
+    "title": "TECH INSIGHT: AI;DR (AI; DIDN'T READ)...",
+    "body": "Global Update: AI;DR (AI; Didn't Read). Meanwhile, on my main platform (Ezra Wanyama), continuous deployment scripts and automated cron jobs are active."
   }
 }
