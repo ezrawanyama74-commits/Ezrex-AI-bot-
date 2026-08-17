@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Ezra Wanyama</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px 16px; }
+        .admin-card { width: 100%; max-width: 440px; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        h2 { font-size: 1.3rem; font-weight: 700; color: #38bdf8; margin-bottom: 20px; text-align: center; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 6px; }
+        .input-group input { width: 100%; padding: 12px 14px; background: #090d16; border: 1px solid #334155; border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none; }
+        .input-group input:focus { border-color: #38bdf8; }
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: transform 0.1s, opacity 0.2s; }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background: linear-gradient(135deg, #0284c7, #2563eb); color: white; margin-top: 6px; }
+        .btn-purple { background: linear-gradient(135deg, #9333ea, #c084fc); color: white; margin-top: 6px; }
+        .section-title { font-size: 0.95rem; color: #f1f5f9; margin: 24px 0 12px; border-top: 1px solid #334155; padding-top: 16px; font-weight: 600; }
+        .login-box { text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="admin-card">
+    <div id="loginSection" class="login-box">
+        <h2>🔒 Portal Authentication</h2>
+        <div class="input-group">
+            <input type="password" id="passInput" placeholder="Enter security passkey...">
+        </div>
+        <button class="btn btn-primary" onclick="checkAuth()">Authenticate</button>
+    </div>
+
+    <div id="dashSection" style="display: none;">
+        <h2>⚡ Control Center</h2>
+        
+        <!-- Link Creator -->
+        <div class="input-group">
+            <label>Button Label</label>
+            <input type="text" id="linkTitle" placeholder="e.g. GitHub Repository">
+        </div>
+        <div class="input-group">
+            <label>Target URL</label>
+            <input type="url" id="linkUrl" placeholder="https://...">
+        </div>
+        <button class="btn btn-primary" onclick="addLink()">Publish Button</button>
+
+        <!-- Media Post Creator -->
+        <div class="section-title">Post Media Content</div>
+        <div class="input-group">
+            <label>Image File</label>
+            <input type="file" id="photoInput" accept="image/*">
+        </div>
+        <div class="input-group">
+            <label>Caption Text</label>
+            <input type="text" id="photoCaption" placeholder="Optional description...">
+        </div>
+        <button class="btn btn-purple" onclick="uploadPhoto()">Publish Photo</button>
+    </div>
+</div>
+
+<script>
+    const AUTH_KEY = "Dracula";
+
+    function checkAuth() {
+        const input = document.getElementById("passInput").value;
+        if (input === AUTH_KEY) {
+            document.getElementById("loginSection").style.display = "none";
+            document.getElementById("dashSection").style.display = "block";
+        } else {
+            alert("Access Denied");
+        }
+    }
+
+    function addLink() {
+        const title = document.getElementById("linkTitle").value.trim();
+        const url = document.getElementById("linkUrl").value.trim();
+        if (!title || !url) return alert("Fill in title and URL");
+
+        const links = JSON.parse(localStorage.getItem("ezra_links") || "[]");
+        links.push({ id: Date.now(), title, url });
+        localStorage.setItem("ezra_links", JSON.stringify(links));
+
+        document.getElementById("linkTitle").value = "";
+        document.getElementById("linkUrl").value = "";
+        alert("Button published to main site!");
+    }
+
+    function uploadPhoto() {
+        const fileInput = document.getElementById("photoInput");
+        const caption = document.getElementById("photoCaption").value.trim();
+        if (!fileInput.files || !fileInput.files[0]) return alert("Select an image first");
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const gallery = JSON.parse(localStorage.getItem("ezra_gallery") || "[]");
+            gallery.unshift({ id: Date.now(), image: e.target.result, caption });
+            localStorage.setItem("ezra_gallery", JSON.stringify(gallery));
+
+            fileInput.value = "";
+            document.getElementById("photoCaption").value = "";
+            alert("Media published to main site!");
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+</script>
+
+</body>
+</html>

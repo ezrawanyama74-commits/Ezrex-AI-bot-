@@ -5,201 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ezra Wanyama | THE SMARTPHONE SCIENTIST HEART</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #0d1117; color: #c9d1d9; padding: 20px 12px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 500px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         
-        /* Header Section */
-        .profile-card { text-align: center; background: #161b22; border: 1px solid #30363d; padding: 24px 16px; border-radius: 16px; margin-bottom: 20px; }
-        .profile-card h1 { color: #58a6ff; font-size: 1.5rem; margin-bottom: 6px; }
-        .profile-card h2 { color: #8b949e; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 12px; text-transform: uppercase; }
-        .profile-card p { font-size: 0.95rem; line-height: 1.5; color: #8b949e; }
-        
-        /* User Gallery / Posts */
-        .feed-item { background: #161b22; border: 1px solid #30363d; border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
-        .feed-item img { width: 100%; height: auto; display: block; border-bottom: 1px solid #30363d; }
-        .feed-item .caption { padding: 12px; font-size: 0.95rem; color: #e6edf3; }
+        body {
+            background: #090d16;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.12) 0px, transparent 50%);
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding: 30px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container { width: 100%; max-width: 480px; }
+
+        /* Profile Card */
+        .profile-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 28px 20px;
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .profile-card h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .profile-card p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #94a3b8;
+            font-weight: 400;
+        }
 
         /* Dynamic Connect Buttons */
-        .btn-link { display: block; width: 100%; background: #21262d; color: #58a6ff; border: 1px solid #30363d; text-align: center; padding: 14px; margin-bottom: 12px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: 0.2s; }
-        .btn-link:active { background: #30363d; transform: scale(0.98); }
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 16px;
+            margin-bottom: 14px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.98rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
 
-        /* Admin Trigger & Panel */
-        .admin-trigger { text-align: center; margin-top: 30px; margin-bottom: 20px; }
-        .admin-btn { background: transparent; color: #484f58; border: none; font-size: 0.85rem; cursor: pointer; text-decoration: underline; }
-        
-        .admin-panel { display: none; background: #161b22; border: 2px solid #238636; border-radius: 16px; padding: 20px; margin-top: 20px; }
-        .admin-panel h3 { color: #3fb950; margin-bottom: 15px; text-align: center; }
-        .input-group { margin-bottom: 12px; }
-        .input-group label { display: block; font-size: 0.8rem; color: #8b949e; margin-bottom: 4px; }
-        .input-group input { width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #fff; font-size: 0.9rem; }
-        .submit-btn { width: 100%; padding: 12px; background: #238636; color: white; border: none; border-radius: 8px; font-weight: bold; margin-top: 8px; cursor: pointer; }
-        .delete-btn { background: #da3633; color: white; border: none; padding: 6px 12px; border-radius: 6px; margin-top: 8px; font-size: 0.75rem; cursor: pointer; }
+        .btn-link:hover, .btn-link:active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        /* Post Gallery */
+        .feed-item {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .feed-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .feed-item .caption {
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.88rem;
+            padding: 20px 0;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Profile / Description Section -->
+    <!-- Header Card -->
     <div class="profile-card">
+        <div class="profile-badge">THE SMARTPHONE SCIENTIST HEART</div>
         <h1>Ezra Wanyama</h1>
-        <h2>THE SMARTPHONE SCIENTIST HEART</h2>
         <p>Proving that a smartphone isn't just for consuming content—it's a high-powered terminal for creating world-class software, automation systems, and dynamic mobile solutions.</p>
     </div>
 
-    <!-- Container for Dynamically Added Links/Buttons -->
+    <!-- Link Buttons -->
     <div id="buttons-container"></div>
 
-    <!-- Container for Uploaded Photos -->
+    <!-- Feed Gallery -->
     <div id="gallery-container"></div>
-
-    <!-- Admin Panel Control -->
-    <div class="admin-trigger">
-        <button class="admin-btn" onclick="openAdminPrompt()">⚙️ Access Admin Panel</button>
-    </div>
-
-    <!-- Secret Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <h3>🔒 Admin Dashboard</h3>
-        
-        <!-- Add Link Form -->
-        <div style="border-bottom: 1px solid #30363d; padding-bottom: 15px; margin-bottom: 15px;">
-            <h4 style="color:#58a6ff; margin-bottom:100px 0 10px 0;">Add New Connect Button</h4>
-            <div class="input-group">
-                <label>Button Title (e.g., GitHub / Project 1)</label>
-                <input type="text" id="linkTitle" placeholder="Enter title...">
-            </div>
-            <div class="input-group">
-                <label>URL / Link</label>
-                <input type="url" id="linkUrl" placeholder="https://...">
-            </div>
-            <button class="submit-btn" onclick="addLink()">Publish Button</button>
-        </div>
-
-        <!-- Add Photo Form -->
-        <div>
-            <h4 style="color:#58a6ff; margin-bottom: 10px;">Post Photo from Phone</h4>
-            <div class="input-group">
-                <label>Select Picture</label>
-                <input type="file" id="photoInput" accept="image/*">
-            </div>
-            <div class="input-group">
-                <label>Caption / Title</label>
-                <input type="text" id="photoCaption" placeholder="Optional photo description...">
-            </div>
-            <button class="submit-btn" style="background:#8957e5;" onclick="uploadPhoto()">Publish Picture</button>
-        </div>
-    </div>
 </div>
 
 <script>
-    const ADMIN_PASS = "Dracula";
-
-    // Load saved links and gallery items on start
     document.addEventListener("DOMContentLoaded", () => {
         renderLinks();
         renderGallery();
     });
 
-    function openAdminPrompt() {
-        const pass = prompt("Enter Admin Password:");
-        if (pass === ADMIN_PASS) {
-            document.getElementById("adminPanel").style.display = "block";
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        } else if (pass !== null) {
-            alert("Incorrect password!");
-        }
-    }
-
-    // --- LINK MANAGEMENT ---
-    function getLinks() {
-        return JSON.parse(localStorage.getItem("ezra_links") || "[]");
-    }
-
-    function addLink() {
-        const title = document.getElementById("linkTitle").value.trim();
-        const url = document.getElementById("linkUrl").value.trim();
-        if (!title || !url) return alert("Please fill in both fields");
-
-        const links = getLinks();
-        links.push({ id: Date.now(), title, url });
-        localStorage.setItem("ezra_links", JSON.stringify(links));
-
-        document.getElementById("linkTitle").value = "";
-        document.getElementById("linkUrl").value = "";
-        renderLinks();
-    }
-
-    function removeLink(id) {
-        let links = getLinks();
-        links = links.filter(item => item.id !== id);
-        localStorage.setItem("ezra_links", JSON.stringify(links));
-        renderLinks();
-    }
-
     function renderLinks() {
         const container = document.getElementById("buttons-container");
-        const links = getLinks();
-        const isAdmin = document.getElementById("adminPanel").style.display === "block";
+        const links = JSON.parse(localStorage.getItem("ezra_links") || "[]");
 
         if (links.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:#484f58; font-size:0.85rem; margin-bottom:15px;">No custom buttons added yet.</p>';
+            container.innerHTML = '<div class="empty-state">No links uploaded yet.</div>';
             return;
         }
 
         container.innerHTML = links.map(item => `
-            <div>
-                <a href="${item.url}" target="_blank" class="btn-link">🔗 ${item.title}</a>
-                ${isAdmin ? `<button class="delete-btn" onclick="removeLink(${item.id})">Remove "${item.title}"</button>` : ''}
-            </div>
+            <a href="${item.url}" target="_blank" class="btn-link">
+                ${item.title}
+            </a>
         `).join('');
-    }
-
-    // --- PHOTO MANAGEMENT ---
-    function getGallery() {
-        return JSON.parse(localStorage.getItem("ezra_gallery") || "[]");
-    }
-
-    function uploadPhoto() {
-        const fileInput = document.getElementById("photoInput");
-        const caption = document.getElementById("photoCaption").value.trim();
-
-        if (!fileInput.files || !fileInput.files[0]) return alert("Select an image to upload");
-
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            const base64Image = e.target.result;
-            const gallery = getGallery();
-            gallery.unshift({ id: Date.now(), image: base64Image, caption });
-            localStorage.setItem("ezra_gallery", JSON.stringify(gallery));
-
-            fileInput.value = "";
-            document.getElementById("photoCaption").value = "";
-            renderGallery();
-        };
-
-        reader.readAsDataURL(file);
-    }
-
-    function removePhoto(id) {
-        let gallery = getGallery();
-        gallery = gallery.filter(item => item.id !== id);
-        localStorage.setItem("ezra_gallery", JSON.stringify(gallery));
-        renderGallery();
     }
 
     function renderGallery() {
         const container = document.getElementById("gallery-container");
-        const gallery = getGallery();
-        const isAdmin = document.getElementById("adminPanel").style.display === "block";
+        const gallery = JSON.parse(localStorage.getItem("ezra_gallery") || "[]");
 
         container.innerHTML = gallery.map(item => `
             <div class="feed-item">
-                <img src="${item.image}" alt="Uploaded photo">
+                <img src="${item.image}" alt="Post Media">
                 ${item.caption ? `<div class="caption">${item.caption}</div>` : ''}
-                ${isAdmin ? `<div style="padding:10px;"><button class="delete-btn" onclick="removePhoto(${item.id})">Delete Photo</button></div>` : ''}
             </div>
         `).join('');
     }
