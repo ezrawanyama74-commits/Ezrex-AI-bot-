@@ -4,154 +4,312 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ezrex AI Bot — The School of Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --accent: #58a6ff;
-      --text: #c9d1d9;
-      --text-bright: #ffffff;
-      --badge-bg: #238636;
-      --badge-text: #3fb950;
+      --bg-cream: #fcfbf7;
+      --bg-card: #ffffff;
+      --crimson-primary: #800020;
+      --crimson-dark: #500014;
+      --text-main: #1f2421;
+      --text-muted: #555d56;
+      --border-color: #e5e2d9;
+      --badge-verified: #1b4332;
+      --badge-text: #2d6a4f;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding: 20px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Merriweather', serif;
+      line-height: 1.7;
+    }
 
-    header {
-      max-width: 1200px;
-      margin: 0 auto 30px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid var(--border);
+    /* Top Utility Bar */
+    .top-bar {
+      background-color: var(--crimson-dark);
+      color: #ffffff;
+      padding: 8px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand h1 { color: var(--text-bright); font-size: 1.8rem; letter-spacing: -0.5px; }
-    .brand span { color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+    .top-bar span { opacity: 0.9; }
 
-    .status-pill {
-      background: rgba(88, 166, 255, 0.1);
-      color: var(--accent);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      border: 1px solid rgba(88, 166, 255, 0.3);
+    /* Header */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .magazine-grid {
+    .brand h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--crimson-primary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .brand p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Hero Section */
+    .hero-banner {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+      color: #ffffff;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .hero-content { max-width: 800px; margin: 0 auto; }
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #f1c40f;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+      opacity: 0.95;
+    }
+
+    /* Purpose / Vision Callout */
+    .vision-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--crimson-primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .section-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--crimson-primary);
+      margin-bottom: 16px;
+    }
+
+    .vision-text {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      border-left: 3px solid var(--crimson-primary);
+      padding-left: 20px;
+      margin-bottom: 40px;
+    }
+
+    /* Magazine Article Grid */
+    .magazine-container {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+
+    .article-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
+      gap: 32px;
     }
 
-    .article-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease;
     }
 
-    .article-card:hover { transform: translateY(-4px); }
+    .card-media {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
 
-    .image-container { position: relative; width: 100%; height: 200px; background: #000; }
-    .image-container img { width: 100%; height: 100%; object-fit: cover; }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .evidence-badge {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(13, 17, 23, 0.85);
-      color: var(--badge-text);
-      border: 1px solid var(--badge-bg);
+      background: #ffffff;
+      color: var(--badge-verified);
+      border: 1px solid var(--badge-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
       padding: 4px 10px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      border-radius: 6px;
-      backdrop-filter: blur(4px);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-title { color: var(--text-bright); font-size: 1.25rem; margin-bottom: 12px; line-height: 1.4; }
+    .card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-category {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: var(--crimson-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
 
-    .tab-controls { display: flex; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    /* Desk Switcher Tabs */
+    .desk-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
     .tab-btn {
       background: none;
       border: none;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 0.85rem;
-      padding: 4px 8px;
-      border-radius: 4px;
-    }
-    .tab-btn.active { background: var(--accent); color: #000; font-weight: bold; }
-
-    .content-box { font-size: 0.95rem; line-height: 1.6; display: none; }
-    .content-box.active { display: block; }
-
-    .card-footer {
-      margin-top: auto;
-      padding-top: 15px;
-      border-top: 1px solid var(--border);
+      font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
-      color: #8b949e;
-      display: flex;
-      justify-content: space-between;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn.active {
+      color: var(--crimson-primary);
+      font-weight: 600;
+      border-bottom: 2px solid var(--crimson-primary);
+    }
+
+    .tab-content { display: none; font-size: 0.95rem; color: var(--text-muted); }
+    .tab-content.active { display: block; }
+
+    footer {
+      background: var(--crimson-dark);
+      color: #ffffff;
+      text-align: center;
+      padding: 30px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
     }
   </style>
 </head>
 <body>
 
+  <div class="top-bar">
+    <span>THE SCHOOL OF TECH — VERIFIED INTELLIGENCE</span>
+    <span>Auto-Crated by Ezrex AI Bot</span>
+  </div>
+
   <header>
     <div class="brand">
       <h1>Ezrex AI Bot</h1>
-      <span>The School of Tech — Verified Magazine Edition</span>
+      <p>The Smartphone Scientist Ecosystem</p>
     </div>
-    <div class="status-pill">● Credibility Engine Active</div>
   </header>
 
-  <main class="magazine-grid" id="magazineContainer">
-    <!-- Sample Article Card -->
-    <article class="article-card">
-      <div class="image-container">
-        <span class="evidence-badge">✓ OFFICIAL LAUNCH</span>
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop" alt="Tensor G5 Chip">
-      </div>
-      <div class="card-body">
-        <h2 class="card-title">Google Officially Unveils Tensor G5 Built on TSMC 3nm Node</h2>
-        
-        <div class="tab-controls">
-          <button class="tab-btn active" onclick="switchTab(this, 'sheng')">🇰🇪 Sheng' Desk</button>
-          <button class="tab-btn" onclick="switchTab(this, 'english')">🌐 World English</button>
-        </div>
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-subtitle">Knowledge • Character • Excellence</div>
+      <h2 class="hero-title">Shaping Tomorrow's Tech Leaders</h2>
+      <p class="hero-desc">Empowering minds through verified technological breakthroughs, credible evidence, and objective editorial analysis.</p>
+    </div>
+  </section>
 
-        <div class="content-box sheng active">
-          Google imecheck in officially na chipset mpya ya Tensor G5. Process hii inatoka TSMC 3nm node, wakiconfirm enhancement ya 30% kwa power efficiency design.
-        </div>
-        <div class="content-box english">
-          Google has officially introduced its next-generation Tensor G5 architecture. Built on TSMC's 3nm fabrication process, official documentation confirms a 30% increase in power efficiency.
-        </div>
+  <section class="vision-section">
+    <div class="section-label">Our Purpose</div>
+    <h2 class="section-heading">Our Vision</h2>
+    <p class="vision-text">To build a globally respected technical hub where knowledge, evidence-based innovation, and character empower individuals to create meaningful solutions and positively transform society.</p>
+  </section>
 
-        <div class="card-footer">
-          <span>Curated by Ezrex AI Bot</span>
-          <span>Verified</span>
+  <main class="magazine-container">
+    <div class="section-label">Curated Desk</div>
+    <h2 class="section-heading" style="margin-bottom: 24px;">Latest News & Events</h2>
+
+    <div class="article-grid">
+      <article class="card">
+        <div class="card-media">
+          <span class="evidence-badge">✓ Official Benchmark</span>
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Tensor G5 Chip">
         </div>
-      </div>
-    </article>
+        <div class="card-body">
+          <div class="card-category">Hardware Architecture</div>
+          <h3 class="card-title">Google Officially Unveils Tensor G5 Built on TSMC 3nm Node</h3>
+
+          <div class="desk-tabs">
+            <button class="tab-btn active" onclick="toggleDesk(this, 'sheng')">🇰🇪 Sheng' Desk</button>
+            <button class="tab-btn" onclick="toggleDesk(this, 'english')">🌐 World English</button>
+          </div>
+
+          <div class="tab-content sheng active">
+            Google imecheck in officially na chipset mpya ya Tensor G5. Process hii inatoka TSMC 3nm node, wakiconfirm enhancement ya 30% kwa power efficiency design.
+          </div>
+          <div class="tab-content english">
+            Google has officially introduced its next-generation Tensor G5 architecture. Built on TSMC's 3nm fabrication process, official documentation confirms a 30% increase in power efficiency.
+          </div>
+        </div>
+      </article>
+    </div>
   </main>
 
+  <footer>
+    <p>&copy; 2026 Ezrex AI Bot | The School of Tech. All rights reserved.</p>
+  </footer>
+
   <script>
-    function switchTab(btn, lang) {
+    function toggleDesk(btn, lang) {
       const card = btn.closest('.card-body');
       card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      card.querySelectorAll('.content-box').forEach(c => c.classList.remove('active'));
+      card.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       
       btn.classList.add('active');
       card.querySelector('.' + lang).classList.add('active');
