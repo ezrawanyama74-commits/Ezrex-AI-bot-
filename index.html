@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Top Header Navigation -->
+  <!-- Fixed Top Header Navigation -->
   <header class="navbar">
     <div class="nav-brand">
       <h1>EZREX AI BOT</h1>
@@ -21,48 +21,54 @@
     </button>
   </header>
 
-  <!-- Sliding Drawer Menu -->
+  <!-- Sliding Drawer Navigation -->
   <nav class="nav-drawer" id="nav-drawer">
-    <ul>
-      <li><a href="#" onclick="showPage('home-page')">🏠 Home</a></li>
-      <li><a href="#" onclick="showPage('news-page')">📰 News & Scraped Desk</a></li>
-      <li><a href="#" onclick="showPage('about-page')">💡 Our Vision</a></li>
+    <ul id="menu-list">
+      <li><a href="#hero-section" onclick="closeMenu()">🏠 Home</a></li>
+      <li><a href="#news-section" onclick="closeMenu()">📰 News & Scraped Desk</a></li>
+      <li><a href="#vision-section" onclick="closeMenu()">💡 Our Vision</a></li>
     </ul>
   </nav>
 
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <!-- Page 1: Home Section -->
-  <section id="home-page" class="page-content active-page">
-    <div class="hero">
+  <!-- Main Scrollable Content Container -->
+  <main class="main-container">
+
+    <!-- Section 1: Hero Banner -->
+    <section id="hero-section" class="editorial-card hero-card">
       <span class="tagline">KNOWLEDGE • CHARACTER • EXCELLENCE</span>
       <h2>SHAPING TOMORROW'S TECH LEADERS</h2>
       <p>Empowering minds through verified technological breakthroughs, credible evidence, and objective editorial analysis.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Page 2: News & Scraped Updates Section -->
-  <section id="news-page" class="page-content">
-    <span class="section-subtitle">CURATED DESK</span>
-    <h2>LATEST NEWS & EVENTS</h2>
+    <!-- Section 2: Scraped News Feed -->
+    <section id="news-section" class="editorial-card">
+      <span class="section-subtitle">CURATED DESK</span>
+      <h2>LATEST NEWS & EVENTS</h2>
 
-    <div class="tab-controls">
-      <button onclick="loadContent('sheng')">🇰🇪 Sheng' Desk</button>
-      <button onclick="loadContent('english')">🌐 World English</button>
-    </div>
+      <div class="tab-controls">
+        <button id="btn-sheng" class="active-tab" onclick="loadContent('sheng')">🇰🇪 Sheng' Desk</button>
+        <button id="btn-english" onclick="loadContent('english')">🌐 World English</button>
+      </div>
 
-    <article class="news-card">
-      <h3 id="news-title">Loading live content...</h3>
-      <p id="news-body">Fetching latest scraped updates...</p>
-    </article>
-  </section>
+      <article class="news-content-box">
+        <h3 id="news-title">Loading live content...</h3>
+        <p id="news-body">Fetching latest scraped updates...</p>
+      </article>
+    </section>
 
-  <!-- Page 3: Vision / About Section -->
-  <section id="about-page" class="page-content">
-    <span class="section-subtitle">OUR PURPOSE</span>
-    <h2>OUR VISION</h2>
-    <p>To build a globally respected technical hub where knowledge, evidence-based innovation, and character empower individuals to create meaningful solutions.</p>
-  </section>
+    <!-- Section 3: Vision & Purpose -->
+    <section id="vision-section" class="editorial-card vision-card">
+      <span class="section-subtitle">OUR PURPOSE</span>
+      <h2>OUR VISION</h2>
+      <p>To build a globally respected technical hub where knowledge, evidence-based innovation, and character empower individuals to create meaningful solutions.</p>
+    </section>
+
+    <!-- Dynamic Sections injected by script.js will append here -->
+    <div id="dynamic-sections"></div>
+
+  </main>
 
   <footer>
     <p>&copy; 2026 Ezrex AI Bot | The School of Tech. All rights reserved.</p>
