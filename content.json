@@ -1,10 +1,10 @@
 {
   "english": {
-    "title": "Academic Updates & Notes",
-    "body": "Detailed summary of upcoming study materials and exam review notes."
+    "title": "Tech Insight: A Preview of DuckDB v2.0...",
+    "body": "Global Update: A Preview of DuckDB v2.0. Meanwhile, on my main platform (Ezra Wanyama), continuous deployment scripts are active."
   },
   "sheng": {
-    "title": "Ma-Info na Notes za Chuo",
-    "body": "Summary mob ya masomo na ma-notes za kucrack izi exams vizuri."
+    "title": "Ma-News: A Preview of DuckDB v2.0...",
+    "body": "Form ni hii: A Preview of DuckDB v2.0. Nayo kwa site yangu-base (Ezra Wanyama), ma-code ziko auto-pushed na cron jobs bila stress!"
   }
 }
