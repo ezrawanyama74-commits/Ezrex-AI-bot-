@@ -19,7 +19,6 @@
             position: relative; 
         }
 
-        /* Dynamic Background Gradient */
         .color-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -35,7 +34,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* High-Speed Racing Canvas Layer */
         #racingCanvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -53,7 +51,6 @@
             z-index: 1;
         }
 
-        /* Animated Rainbow Border Wrapper */
         .card-wrapper {
             position: relative;
             border-radius: 26px;
@@ -70,7 +67,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Main Glass Card */
         .main-card {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(20px);
@@ -82,7 +78,6 @@
             align-items: center;
         }
 
-        /* Breathing Profile Photo */
         .profile-img {
             width: 130px;
             height: 130px;
@@ -100,7 +95,6 @@
             100% { transform: scale(0.98); box-shadow: 0 0 20px rgba(236, 72, 153, 0.6); border-color: #ec4899; }
         }
 
-        /* Disappearing / Appearing Text Effect */
         .flicker-text {
             font-size: 1.4rem;
             font-weight: 800;
@@ -124,7 +118,6 @@
             line-height: 1.6;
         }
 
-        /* Live Terminal Widget */
         .terminal-box {
             width: 100%;
             background: rgba(3, 7, 18, 0.9);
@@ -149,7 +142,6 @@
         .dot-yellow { background: #eab308; }
         .dot-green { background: #22c55e; }
 
-        /* Social Badges Grid */
         .social-bar {
             display: flex;
             gap: 12px;
@@ -174,7 +166,6 @@
 
         .social-icon:active { transform: scale(0.9); border-color: #a855f7; }
 
-        /* Compact Grid for Rotating Gear Buttons */
         .links-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -212,7 +203,6 @@
             top: 24%;
         }
 
-        /* Center Horizontal Title Overlay */
         .gear-title-overlay {
             position: absolute;
             top: 52%;
@@ -237,11 +227,8 @@
             50% { opacity: 0.05; transform: translate(-50%, -50%) scale(0.92); }
         }
 
-        .gear-btn:active {
-            transform: scale(0.92);
-        }
+        .gear-btn:active { transform: scale(0.92); }
 
-        /* Action Buttons */
         .action-btn {
             width: 100%;
             padding: 14px;
@@ -262,7 +249,6 @@
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(236, 72, 153, 0.4));
         }
 
-        /* Photo Gallery Grid */
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -298,8 +284,6 @@
 <body>
 
 <div class="color-bg"></div>
-
-<!-- High-Speed Racing Canvas -->
 <canvas id="racingCanvas"></canvas>
 
 <div class="container">
@@ -311,7 +295,6 @@
         </div>
     </div>
 
-    <!-- Live Status Terminal Widget -->
     <div class="terminal-box">
         <div class="terminal-header">
             <div class="dot dot-red"></div>
@@ -323,25 +306,20 @@
         <div style="color: #cbd5e1;">> Core Focus: Web Apps & AI Automation</div>
     </div>
 
-    <!-- Social Badges -->
     <div class="social-bar">
-        <a href="https://github.com" target="_blank" class="social-icon" onclick="playClickSound()">💻</a>
+        <a href="https://github.com/ezrawanyama74-commits" target="_blank" class="social-icon" onclick="playClickSound()">💻</a>
         <a href="https://linkedin.com" target="_blank" class="social-icon" onclick="playClickSound()">💼</a>
         <a href="https://youtube.com" target="_blank" class="social-icon" onclick="playClickSound()">📺</a>
     </div>
 
-    <!-- Compact Gear Buttons Container -->
     <div id="linksContainer" class="links-container"></div>
 
-    <!-- Save Contact Card Button -->
     <button class="action-btn" onclick="saveContact()">🎴 Save Contact Info</button>
 
-    <!-- Gallery Container -->
     <div id="galleryContainer" class="gallery-container"></div>
 </div>
 
 <script>
-    /* Audio Effect Synthesizer (Web Audio API) */
     function playClickSound() {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -359,7 +337,6 @@
         } catch(e) {}
     }
 
-    /* Save Contact Card (.vcf) */
     function saveContact() {
         playClickSound();
         const vcardData = `BEGIN:VCARD
@@ -398,7 +375,7 @@ END:VCARD`;
         reset() {
             this.x = Math.random() * canvas.width;
             this.y = canvas.height + 60;
-            this.speed = Math.random() * 8 + 12; // Extremely fast racing speed
+            this.speed = Math.random() * 8 + 12;
             this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
             this.size = Math.random() * 8 + 18;
             this.spin = (Math.random() - 0.5) * 0.1;
@@ -406,12 +383,9 @@ END:VCARD`;
             this.opacity = Math.random() * 0.2 + 0.8;
         }
         update() {
-            this.y -= this.speed; // Blasting straight up like a racing car speeding past
+            this.y -= this.speed;
             this.angle += this.spin;
-
-            if (this.y < -60) {
-                this.reset();
-            }
+            if (this.y < -60) { this.reset(); }
         }
         draw() {
             ctx.save();
@@ -432,37 +406,40 @@ END:VCARD`;
 
     function animateRacing() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
+        particles.forEach(p => { p.update(); p.draw(); });
         requestAnimationFrame(animateRacing);
     }
     animateRacing();
 
-    /* Render Content */
+    /* Permanent Hardcoded Default Content (Bypasses LocalStorage loss) */
+    const links = [
+        { title: "The Smartphone Scientist Web", url: "#" },
+        { title: "Facebook", url: "https://facebook.com" },
+        { title: "YouTube Channel", url: "https://youtube.com" },
+        { title: "Instagram Profile", url: "https://instagram.com" }
+    ];
+
+    const gallery = [
+        { image: "ezra.jpg", caption: "Not everyone loves what you do. But remember who you are" },
+        { image: "ezra.jpg", caption: "Don't wait for opportunities, just create them" },
+        { image: "ezra.jpg", caption: "Stay Disciplined and all will be well." },
+        { image: "ezra.jpg", caption: "You can do anything perfect but only if you have strategy" }
+    ];
+
     function renderPage() {
         const linksContainer = document.getElementById("linksContainer");
-        const links = JSON.parse(localStorage.getItem("ezra_links") || "[]");
-
-        const activeLinks = links.length > 0 ? links : [{ title: "THE SMARTPHONE SCIENTIST WEB", url: "#" }];
-
-        linksContainer.innerHTML = activeLinks.map((link, idx) => {
+        linksContainer.innerHTML = links.map((link, idx) => {
             const pathId = `circlePath_${idx}`;
             return `
                 <a href="${link.url}" target="_blank" class="gear-btn" onclick="playClickSound()">
                     <span class="gear-center-icon">⚙️</span>
-                    
-                    <!-- Center Overlay Title (Flickering) -->
                     <div class="gear-title-overlay">${link.title}</div>
-
                     <svg viewBox="0 0 200 200" class="gear-svg">
                         <defs>
                             <path id="${pathId}" d="M 100, 100 m -65, 0 a 65,65 0 1,1 130,0 a 65,65 0 1,1 -130,0" />
                         </defs>
                         <circle cx="100" cy="100" r="90" fill="none" stroke="#38bdf8" stroke-width="4" stroke-dasharray="10 6" />
                         <circle cx="100" cy="100" r="75" fill="rgba(15, 23, 42, 0.9)" stroke="#a855f7" stroke-width="2" />
-                        
                         <text fill="#f8fafc" font-size="10" font-weight="bold" letter-spacing="2">
                             <textPath href="#${pathId}" startOffset="50%" text-anchor="middle">
                                 ${link.title.toUpperCase()}
@@ -474,16 +451,12 @@ END:VCARD`;
         }).join('');
 
         const galleryContainer = document.getElementById("galleryContainer");
-        const gallery = JSON.parse(localStorage.getItem("ezra_gallery") || "[]");
-
-        if (gallery.length > 0) {
-            galleryContainer.innerHTML = gallery.map(item => `
-                <div class="photo-card">
-                    <img src="${item.image}" alt="Gallery photo">
-                    ${item.caption ? `<div class="photo-caption">${item.caption}</div>` : ''}
-                </div>
-            `).join('');
-        }
+        galleryContainer.innerHTML = gallery.map(item => `
+            <div class="photo-card">
+                <img src="${item.image}" alt="Gallery photo">
+                ${item.caption ? `<div class="photo-caption">${item.caption}</div>` : ''}
+            </div>
+        `).join('');
     }
 
     renderPage();
